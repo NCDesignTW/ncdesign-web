@@ -1651,5 +1651,131 @@
     }
   });
 </script>
-</body>
+// =============================================
+// NC Design × Google Sheets 詢價表單連動
+// 貼到 index.html 的 </body> 前面
+// =============================================
+
+const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzUYbNjP7t2ZdQoQWsDRWB8CIaGWCboL4iAXJEhLucgG-F60Q0k-PG9yVEUSPc8qWKipg/exec";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // ── checkbox 互動 (checked class) ──
+  document.querySelectorAll(".checkbox-label").forEach(function (label) {
+    var input = label.querySelector("input[type='checkbox']");
+    if (!input) return;
+    label.addEventListener("click", function () {
+      // 稍微延遲讓瀏覽器先切換 checked 狀態
+      setTimeout(function () {
+        if (input.checked) {
+          label.classList.add("checked");
+        } else {
+          label.classList.remove("checked");
+        }
+      }, 0);
+    });
+  });
+
+  // ── 送出按鈕 ──
+  var submitBtn = document.querySelector(".btn-submit");
+  var statusEl  = document.querySelector(".form-status");
+
+  if (!submitBtn) return;
+
+  submitBtn.addEventListener("click", async function (e) {
+    e.preventDefault();
+
+    // 收集欄位
+    var inputs   = document.querySelectorAll(".inquiry-form .form-input");
+    var company  = inputs[0] ? inputs[0].value.trim() : "";
+    var contact  = inputs[1] ? inputs[1].value.trim() : "";
+    var jobTitle = inputs[2] ? inputs[2].value.trim() : "";
+    var phone    = inputs[3] ? inputs[3].value.trim() : "";
+    var email    = inputs[4] ? inputs[4].value.trim() : "";
+
+    var textarea = document.querySelector(".inquiry-form .form-textarea");
+    var message  = textarea ? textarea.value.trim() : "";
+
+    var selectEl = document.querySelector(".inquiry-form .form-select");
+    var source   = selectEl ? selectEl.value : "";
+
+    var categories = Array.from(
+      document.querySelectorAll(".checkbox-label input[type='checkbox']:checked")
+    ).map(function (cb) {
+      return cb.closest(".checkbox-label").textContent.trim();
+    }).join(", ");
+
+    // 驗證必填
+    if (!company || !contact || !phone || !email || !message) {
+      showStatus("error", "⚠️ 請填寫所有必填欄位（＊）");
+      return;
+    }
+
+    // 送出中狀態
+    submitBtn.disabled = true;
+    submitBtn.textContent = "送出中…";
+    hideStatus();
+
+    var payload = {
+      company:    company,
+      contact:    contact,
+      title:      jobTitle,
+      phone:      phone,
+      email:      email,
+      categories: categories,
+      message:    message,
+      source:     source
+    };
+
+    try {
+      // Google Apps Script 需用 no-cors
+      await fetch(APPS_SCRIPT_URL, {
+        method:  "POST",
+        mode:    "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body:    JSON.stringify(payload)
+      });
+
+      // no-cors 無法讀回應，送出即視為成功
+      showSuccess();
+
+    } catch (err) {
+      console.error("送出失敗：", err);
+      showStatus("error", "❌ 送出失敗，請重新嘗試或直接來電。");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "送出詢價單";
+    }
+  });
+
+  // ── 成功畫面（替換整個 form） ──
+  function showSuccess() {
+    var form = document.querySelector(".inquiry-form");
+    if (form) {
+      form.innerHTML = [
+        '<div style="padding:40px 0; text-align:center;">',
+        '  <div style="font-size:2.5rem; margin-bottom:16px;">✅</div>',
+        '  <h3 style="font-family:var(--font-display); font-size:1.4rem; font-weight:300;',
+        '      color:var(--white); margin-bottom:12px;">詢價單已成功送出！</h3>',
+        '  <p style="font-size:13px; color:var(--silver-dark); line-height:1.8;">',
+        '    NC Design 業務團隊將於 <strong style="color:#7ecfe0;">一個工作日內</strong> 與您聯繫。<br>',
+        '    感謝您的詢問。</p>',
+        '</div>'
+      ].join('');
+    }
+  }
+
+  function showStatus(type, msg) {
+    if (!statusEl) return;
+    statusEl.className = "form-status " + type;
+    statusEl.textContent = msg;
+  }
+
+  function hideStatus() {
+    if (!statusEl) return;
+    statusEl.className = "form-status";
+    statusEl.textContent = "";
+  }
+
+});</body>
 </html>
