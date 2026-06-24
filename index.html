@@ -463,7 +463,6 @@
           </div>
           <div class="form-submit">
             <button type="submit" class="btn-submit" id="submitBtn">送出詢價單</button>
-            <a class="btn-outline" href="tel:+886-3-0000000">電話洽詢</a>
           </div>
           <div class="form-status" id="formStatus"></div>
         </form>
@@ -503,7 +502,7 @@
       </div>
       <div>
         <div class="footer-col-title">聯絡資訊</div>
-        <div class="footer-contact-item"><span class="contact-type">地址</span><span class="contact-val">台灣新竹市〔公司地址〕</span></div>
+        <div class="footer-contact-item"><span class="contact-type">地址</span><span class="contact-val">〔公司地址〕</span></div>
         <div class="footer-contact-item"><span class="contact-type">電話</span><span class="contact-val">+886-3-000-0000</span></div>
         <div class="footer-contact-item"><span class="contact-type">Email</span><span class="contact-val">info@ncdesign.com.tw</span></div>
         <div class="footer-contact-item"><span class="contact-type">營業時間</span><span class="contact-val">週一至週五　08:30 – 17:30</span></div>
@@ -586,7 +585,7 @@
         body: JSON.stringify(payload),
       });
       status.className = 'form-status success';
-      status.textContent = '✓ 詢價單已送出！我們將在一個工作日內與您聯繫。';
+      status.textContent = '✓ 詢價單已送出！我們將在一～三個工作日內與您聯繫。';
       status.style.display = 'block';
       form.reset();
       document.querySelectorAll('.checkbox-label').forEach(l => l.classList.remove('checked'));
