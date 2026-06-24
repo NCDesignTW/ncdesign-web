@@ -701,7 +701,7 @@
        CTA BAND
     ═══════════════════════════════════ */
     #cta-band {
-      padding: 80px 0;
+      padding: 100px 0;
       background:
         linear-gradient(135deg, rgba(42,122,140,0.15) 0%, rgba(28,38,54,0.6) 50%, rgba(42,122,140,0.08) 100%),
         var(--ink-navy);
@@ -718,21 +718,141 @@
 
     .cta-inner {
       position: relative; z-index: 1;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px; align-items: start;
     }
+    @media (max-width: 860px) { .cta-inner { grid-template-columns: 1fr; } }
+
     .cta-text .section-label { margin-bottom: 12px; }
     .cta-title {
       font-family: var(--font-display);
       font-size: clamp(22px, 2.8vw, 36px);
       font-weight: 300; color: var(--white);
-      line-height: 1.2;
+      line-height: 1.25;
     }
     .cta-sub {
       font-size: 13px; color: var(--silver-dark); font-weight: 300;
-      margin-top: 10px; max-width: 420px; line-height: 1.7;
+      margin-top: 12px; line-height: 1.8;
     }
-    .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cta-info {
+      margin-top: 32px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .cta-info-item {
+      display: flex; gap: 10px; align-items: center;
+      font-size: 12px; color: var(--silver-dark); letter-spacing: .04em;
+    }
+    .cta-info-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--ice-blue); flex-shrink: 0;
+    }
+
+    /* ── FORM ── */
+    .inquiry-form {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group {
+      display: flex; flex-direction: column; gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-label {
+      font-size: 11px; font-weight: 500; letter-spacing: .12em;
+      color: var(--silver-dark); text-transform: uppercase;
+    }
+    .form-label .req { color: var(--ice-blue); margin-left: 2px; }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(218,225,227,0.15);
+      border-radius: 4px;
+      padding: 11px 14px;
+      font-family: var(--font-body);
+      font-size: 13px; color: var(--silver-light);
+      outline: none;
+      transition: border-color .2s, background .2s;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(159,165,166,0.45); }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: rgba(74,158,181,0.55);
+      background: rgba(74,158,181,0.05);
+    }
+    .form-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239fa5a6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-select option { background: #1c2636; color: var(--silver-light); }
+    .form-textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+
+    .checkbox-group {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 2px;
+    }
+    .checkbox-label {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: var(--silver-dark);
+      cursor: pointer; padding: 7px 12px;
+      border: 1px solid rgba(218,225,227,0.12);
+      border-radius: 4px;
+      transition: border-color .2s, color .2s;
+      user-select: none;
+    }
+    .checkbox-label input { display: none; }
+    .checkbox-label:hover { border-color: rgba(74,158,181,0.4); color: var(--silver-light); }
+    .checkbox-label.checked {
+      border-color: var(--ice-blue);
+      color: var(--ice-blue);
+      background: rgba(74,158,181,0.08);
+    }
+
+    .form-submit {
+      margin-top: 8px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .btn-submit {
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #2a7a8c, #4a9eb5);
+      border: none; border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 13px; font-weight: 500; letter-spacing: .08em;
+      color: var(--white); cursor: pointer;
+      transition: opacity .22s, transform .22s;
+    }
+    .btn-submit:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    .form-status {
+      font-size: 12px; letter-spacing: .04em;
+      padding: 10px 16px; border-radius: 4px;
+      display: none;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(74,158,181,0.12);
+      border: 1px solid rgba(74,158,181,0.3);
+      color: #7ecfe0;
+    }
+    .form-status.error {
+      display: block;
+      background: rgba(200,80,80,0.1);
+      border: 1px solid rgba(200,80,80,0.25);
+      color: #e08080;
+    }
     .btn-outline {
       padding: 14px 28px;
       border: 1px solid rgba(218,225,227,0.25);
@@ -1292,18 +1412,91 @@
 <section id="cta-band">
   <div class="container">
     <div class="cta-inner">
-      <div class="cta-text">
+
+      <!-- 左側說明 -->
+      <div class="cta-text reveal">
         <div class="section-label">
           <span class="line"></span>
           <span class="text">聯絡詢價</span>
         </div>
-        <div class="cta-title">有材料需求？<br>立即與我們的專業團隊聯繫</div>
+        <div class="cta-title">有材料需求？<br>立即與專業團隊聯繫</div>
         <p class="cta-sub">無論是樣品申請、規格確認或長期量產合作，NC Design 業務團隊將在一個工作日內回覆您的詢問。</p>
+        <div class="cta-info">
+          <div class="cta-info-item"><span class="cta-info-dot"></span>一個工作日內回覆</div>
+          <div class="cta-info-item"><span class="cta-info-dot"></span>提供原廠樣品申請協助</div>
+          <div class="cta-info-item"><span class="cta-info-dot"></span>技術規格文件免費提供</div>
+          <div class="cta-info-item"><span class="cta-info-dot"></span>聯絡電話：+886-3-000-0000</div>
+        </div>
       </div>
-      <div class="cta-actions">
-        <a class="btn-primary" href="mailto:info@ncdesign.com.tw">送出詢價單</a>
-        <a class="btn-outline" href="tel:+886-3-0000000">電話洽詢</a>
+
+      <!-- 右側表單 -->
+      <div class="reveal">
+        <form class="inquiry-form" id="inquiryForm">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">公司名稱<span class="req">＊</span></label>
+              <input class="form-input" type="text" name="公司名稱" placeholder="貴公司全名" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">聯絡人<span class="req">＊</span></label>
+              <input class="form-input" type="text" name="聯絡人" placeholder="您的姓名" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">職稱</label>
+              <input class="form-input" type="text" name="職稱" placeholder="例：採購工程師">
+            </div>
+            <div class="form-group">
+              <label class="form-label">電話<span class="req">＊</span></label>
+              <input class="form-input" type="tel" name="電話" placeholder="02-xxxx-xxxx" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email<span class="req">＊</span></label>
+            <input class="form-input" type="email" name="Email" placeholder="your@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">感興趣品類</label>
+            <div class="checkbox-group" id="categoryGroup">
+              <label class="checkbox-label"><input type="checkbox" value="半導體周邊材料">半導體周邊材料</label>
+              <label class="checkbox-label"><input type="checkbox" value="無塵室材料 ePTFE">無塵室材料 ePTFE</label>
+              <label class="checkbox-label"><input type="checkbox" value="加熱片相關材料">加熱片相關材料</label>
+              <label class="checkbox-label"><input type="checkbox" value="電子元件">電子元件</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">詢問內容<span class="req">＊</span></label>
+            <textarea class="form-textarea" name="詢問內容" placeholder="請描述您的材料需求、規格或應用場景…" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">如何得知我們</label>
+            <select class="form-select" name="如何得知我們">
+              <option value="" disabled selected>請選擇</option>
+              <option>Google 搜尋</option>
+              <option>業界推薦</option>
+              <option>展覽活動</option>
+              <option>社群媒體</option>
+              <option>其他</option>
+            </select>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="submitBtn">送出詢價單</button>
+            <a class="btn-outline" href="tel:+886-3-0000000">電話洽詢</a>
+          </div>
+
+          <div class="form-status" id="formStatus"></div>
+
+        </form>
       </div>
+
     </div>
   </div>
 </section>
@@ -1399,6 +1592,64 @@
       heroBg.style.transform = `translateY(${y}px)`;
     }
   }, { passive: true });
+
+  /* ── CHECKBOX TOGGLE ── */
+  document.querySelectorAll('.checkbox-label').forEach(label => {
+    label.addEventListener('click', () => {
+      const cb = label.querySelector('input');
+      cb.checked = !cb.checked;
+      label.classList.toggle('checked', cb.checked);
+    });
+  });
+
+  /* ── INQUIRY FORM → GOOGLE APPS SCRIPT ── */
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzUYbNjP7t2ZdQoQWsDRWB8CIaGWCboL4iAXJEhLucgG-F60Q0k-PG9yVEUSPc8qWKipg/exec';
+
+  document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn    = document.getElementById('submitBtn');
+    const status = document.getElementById('formStatus');
+    btn.disabled = true;
+    btn.textContent = '送出中…';
+    status.className = 'form-status';
+    status.style.display = 'none';
+
+    const form = e.target;
+    const checked = [...document.querySelectorAll('#categoryGroup input:checked')]
+                      .map(cb => cb.value).join('、') || '未選擇';
+
+    const payload = {
+      公司名稱: form['公司名稱'].value,
+      聯絡人:   form['聯絡人'].value,
+      職稱:     form['職稱'].value,
+      Email:    form['Email'].value,
+      電話:     form['電話'].value,
+      感興趣品類: checked,
+      詢問內容: form['詢問內容'].value,
+      如何得知我們: form['如何得知我們'].value,
+    };
+
+    try {
+      await fetch(GAS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      status.className = 'form-status success';
+      status.textContent = '✓ 詢價單已送出！我們將在一個工作日內與您聯繫。';
+      status.style.display = 'block';
+      form.reset();
+      document.querySelectorAll('.checkbox-label').forEach(l => l.classList.remove('checked'));
+    } catch(err) {
+      status.className = 'form-status error';
+      status.textContent = '送出失敗，請直接來信 info@ncdesign.com.tw 或電話洽詢。';
+      status.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '送出詢價單';
+    }
+  });
 </script>
 </body>
 </html>
