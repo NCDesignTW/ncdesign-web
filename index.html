@@ -246,9 +246,12 @@
     .contact-val { font-size: 13px; color: var(--silver-mid); font-weight: 300; }
     .footer-bar { border-top: 1px solid rgba(218,225,227,0.06); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .footer-bar p { font-size: 11px; color: var(--silver-dark); letter-spacing: .04em; }
+    .footer-bar--privacy { padding-bottom: 8px; border-bottom: none; }
+    .footer-privacy-note { font-size: 11px; color: var(--silver-dark); letter-spacing: .04em; }
     .footer-bar-links { display: flex; gap: 20px; list-style: none; }
     .footer-bar-links a { font-size: 11px; color: var(--silver-dark); text-decoration: none; transition: color .2s; }
     .footer-bar-links a:hover { color: var(--silver-light); }
+    .form-consent { font-size: 11px; color: var(--silver-dark); letter-spacing: .04em; margin-top: 16px; margin-bottom: 4px; }
 
     @media (max-width: 1100px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } .strengths-inner { gap: 48px; } }
     @media (max-width: 900px) { nav { padding: 0 24px; } .nav-links, .nav-cta { display: none; } .nav-mobile-btn { display: flex; margin-left: auto; } .hero-img-wrap { display: none; } .hero-inner { padding: 0 24px; } .hero-stats { flex-wrap: wrap; gap: 20px; } .stat-item { flex: 0 0 calc(50% - 10px); border-right: none; padding-right: 0; } .container { padding: 0 24px; } .strengths-inner { grid-template-columns: 1fr; } .strengths-left { display: none; } .app-header { grid-template-columns: 1fr; gap: 24px; } .app-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-brand { grid-column: 1 / -1; } .cta-inner { grid-template-columns: 1fr; } }
@@ -549,6 +552,7 @@
               <option>其他</option>
             </select>
           </div>
+          <p class="form-consent">點擊送出即表示您同意我們依隱私權政策處理您的個人資料。</p>
           <div class="form-submit">
             <button type="submit" class="btn-submit" id="submitBtn">送出詢價單</button>
           </div>
@@ -595,6 +599,9 @@
         <div class="footer-contact-item"><span class="contact-type">Email</span><span class="contact-val">info@ncdesign.com.tw</span></div>
         <div class="footer-contact-item"><span class="contact-type">營業時間</span><span class="contact-val">週一至週五　08:30 – 17:30</span></div>
       </div>
+    </div>
+    <div class="footer-bar footer-bar--privacy">
+      <p class="footer-privacy-note">本網站蒐集之個人資料僅用於詢價回覆，不會提供予第三方。</p>
     </div>
     <div class="footer-bar">
       <p>© 2025 NC Design CO., LTD. All rights reserved.</p>
