@@ -85,14 +85,14 @@
     .crosshair::before, .crosshair::after { content: ''; position: absolute; background: rgba(42,122,140,0.18); }
     .crosshair::before { top: 50%; left: -30px; right: -30px; height: 1px; }
     .crosshair::after  { left: 50%; top: -30px; bottom: -30px; width: 1px; }
-    .hero-inner { position: relative; max-width: 1280px; margin: 0 auto; padding: 0 48px; z-index: 2; }
+    .hero-inner { position: relative; max-width: 1280px; margin: 0; padding: 0 48px; z-index: 2; text-align: left; }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
     .eyebrow-line { width: 32px; height: 1px; background: var(--accent-teal); }
     .eyebrow-text { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-teal); font-family: var(--font-mono); }
     .hero-headline { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 76px); font-weight: 300; line-height: 1.08; letter-spacing: -.02em; color: var(--white); max-width: 620px; margin-bottom: 32px; }
     .hero-headline em { font-style: normal; background: linear-gradient(120deg, var(--silver-light) 0%, var(--silver-mid) 50%, var(--accent-teal) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hero-desc { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--silver-dark); max-width: 440px; margin-bottom: 48px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .hero-actions { display: flex; align-items: center; justify-content: flex-start; gap: 20px; flex-wrap: wrap; }
     .btn-primary { padding: 14px 32px; background: linear-gradient(135deg, var(--accent-teal), #1e5f6e); border: none; border-radius: 4px; font-size: 13px; font-weight: 500; letter-spacing: .08em; color: var(--white); text-decoration: none; cursor: pointer; transition: opacity .22s, transform .22s; box-shadow: 0 4px 24px rgba(42,122,140,0.28); }
     .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
     .btn-ghost { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 400; letter-spacing: .06em; color: var(--silver-mid); text-decoration: none; transition: color .22s; }
