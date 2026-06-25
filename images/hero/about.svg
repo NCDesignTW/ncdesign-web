@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800">
+  <rect width="640" height="800" fill="#1c2636"/>
+  <defs>
+    <pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="rgba(218,225,227,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="800" fill="url(#g)"/>
+  <line x1="0" y1="0" x2="640" y2="800" stroke="rgba(42,122,140,0.05)" stroke-width="1"/>
+  <line x1="640" y1="0" x2="0" y2="800" stroke="rgba(42,122,140,0.05)" stroke-width="1"/>
+  <rect x="20" y="20" width="600" height="760" fill="none" stroke="rgba(42,122,140,0.12)" stroke-width="1"/>
+  <path d="M20 56 L20 20 56 20" fill="none" stroke="rgba(42,122,140,0.5)" stroke-width="2"/>
+  <path d="M584 20 L620 20 620 56" fill="none" stroke="rgba(42,122,140,0.5)" stroke-width="2"/>
+  <path d="M20 744 L20 780 56 780" fill="none" stroke="rgba(42,122,140,0.5)" stroke-width="2"/>
+  <path d="M584 780 L620 780 620 744" fill="none" stroke="rgba(42,122,140,0.5)" stroke-width="2"/>
+  <circle cx="320" cy="400" r="40" fill="none" stroke="rgba(42,122,140,0.25)" stroke-width="1"/>
+  <line x1="256" y1="400" x2="384" y2="400" stroke="rgba(42,122,140,0.22)" stroke-width="1"/>
+  <line x1="320" y1="336" x2="320" y2="464" stroke="rgba(42,122,140,0.22)" stroke-width="1"/>
+  <text x="320" y="368" font-family="Inter,Arial,sans-serif" font-size="14" fill="rgba(159,165,166,0.5)" text-anchor="middle" letter-spacing="3">關於我們形象圖</text>
+  <text x="320" y="412" font-family="Inter,Arial,sans-serif" font-size="22" fill="rgba(42,122,140,0.9)" text-anchor="middle" font-weight="300" letter-spacing="2">640 × 800 px</text>
+  <text x="320" y="440" font-family="Inter,Arial,sans-serif" font-size="11" fill="rgba(159,165,166,0.3)" text-anchor="middle">替換路徑：images/hero/about.jpg</text>
+</svg>

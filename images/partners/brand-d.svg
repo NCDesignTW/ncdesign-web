@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 80">
+  <rect width="180" height="80" fill="rgba(28,38,54,0)"/>
+  <rect x="14" y="12" width="152" height="56" rx="2" fill="rgba(42,122,140,0.08)" stroke="rgba(42,122,140,0.2)" stroke-width="1"/>
+  <text x="90" y="36" font-family="Inter,Arial,sans-serif" font-size="14" fill="rgba(159,165,166,0.45)" text-anchor="middle" font-weight="600" letter-spacing="3">BRAND D</text>
+  <text x="90" y="53" font-family="Inter,Arial,sans-serif" font-size="9" fill="rgba(42,122,140,0.55)" text-anchor="middle" letter-spacing="1">180 × 80 px</text>
+  <text x="90" y="65" font-family="Inter,Arial,sans-serif" font-size="8" fill="rgba(159,165,166,0.2)" text-anchor="middle">images/partners/brand-d.png</text>
+</svg>

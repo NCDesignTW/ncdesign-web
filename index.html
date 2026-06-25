@@ -252,6 +252,13 @@
     .footer-bar-links a { font-size: 11px; color: var(--silver-dark); text-decoration: none; transition: color .2s; }
     .footer-bar-links a:hover { color: var(--silver-light); }
     .form-consent { font-size: 11px; color: var(--silver-dark); letter-spacing: .04em; margin-top: 16px; margin-bottom: 4px; }
+    .logo-mark img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; display: block; }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink-deep) 0%, transparent 18%), linear-gradient(270deg, rgba(12,44,51,0.4) 0%, transparent 40%), linear-gradient(180deg, var(--ink-deep) 0%, transparent 12%, transparent 80%, var(--ink-deep) 100%); pointer-events: none; z-index: 1; }
+    .strengths-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cat-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .app-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .partner-logo img { width: 100%; height: 100%; object-fit: contain; padding: 10px; opacity: 0.65; }
 
     @media (max-width: 1100px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } .strengths-inner { gap: 48px; } }
     @media (max-width: 900px) { nav { padding: 0 24px; } .nav-links, .nav-cta { display: none; } .nav-mobile-btn { display: flex; margin-left: auto; } .hero-img-wrap { display: none; } .hero-inner { padding: 0 24px; } .hero-stats { flex-wrap: wrap; gap: 20px; } .stat-item { flex: 0 0 calc(50% - 10px); border-right: none; padding-right: 0; } .container { padding: 0 24px; } .strengths-inner { grid-template-columns: 1fr; } .strengths-left { display: none; } .app-header { grid-template-columns: 1fr; gap: 24px; } .app-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-brand { grid-column: 1 / -1; } .cta-inner { grid-template-columns: 1fr; } }
@@ -345,7 +352,7 @@
 
 <nav id="main-nav">
   <a class="nav-logo" href="#">
-    <div class="logo-mark"><span>NC</span></div>
+    <div class="logo-mark"><img src="images/logo/icon.svg" alt="NC Design Logo"></div>
     <div class="logo-text">
       <span class="name">NC Design</span>
       <span class="sub">Industrial Materials</span>
@@ -380,12 +387,7 @@
   <div class="hero-orb-2"></div>
   <div class="hero-streak"></div>
   <div class="hero-img-wrap">
-    <div class="img-placeholder">
-      <div class="crosshair"></div>
-      <span class="img-placeholder-label">Hero 主視覺圖片</span>
-      <span class="img-placeholder-size">建議尺寸：1400 × 900 px</span>
-      <span class="img-placeholder-size">路徑：images/hero/main.jpg</span>
-    </div>
+    <img src="images/hero/main.svg" alt="Hero 主視覺">
   </div>
   <div class="hero-inner">
     <div class="hero-eyebrow">
@@ -419,19 +421,19 @@
     </div>
     <div class="cat-grid">
       <a class="cat-card reveal reveal-delay-1" href="#">
-        <div class="cat-img"><div class="cat-img-inner"><div class="cat-img-icon"><svg width="20" height="20" fill="none" stroke="rgba(42,122,140,0.7)" stroke-width="1.2" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 7V4M12 7V3M15 7V4M9 17v3M12 17v4M15 17v3M7 9H4M7 12H3M7 15H4M17 9h3M17 12h4M17 15h3"/></svg></div><span class="placeholder-label">半導體周邊材料圖片</span><span class="placeholder-size">建議 800×600 px</span></div></div>
+        <div class="cat-img"><img src="images/products/semiconductor/product.svg" alt="半導體周邊材料"></div>
         <div class="cat-body"><div class="cat-num">01 / 半導體周邊材料</div><div class="cat-name">Semiconductor<br>Peripheral Materials</div><div class="cat-text">供應晶圓製程所需之周邊輔助材料，涵蓋研磨耗材、封裝輔料及製程用化學品，嚴格符合潔淨度與純度規範，適用於各世代製程節點。</div><div class="cat-tags"><span class="cat-tag">研磨耗材</span><span class="cat-tag">封裝輔料</span><span class="cat-tag">製程化學品</span></div><span class="cat-arrow">了解更多 →</span></div>
       </a>
       <a class="cat-card reveal reveal-delay-2" href="#">
-        <div class="cat-img"><div class="cat-img-inner"><div class="cat-img-icon"><svg width="20" height="20" fill="none" stroke="rgba(42,122,140,0.7)" stroke-width="1.2" viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><span class="placeholder-label">無塵室材料圖片</span><span class="placeholder-size">建議 800×600 px</span></div></div>
+        <div class="cat-img"><img src="images/products/cleanroom/product.svg" alt="無塵室材料"></div>
         <div class="cat-body"><div class="cat-num">02 / 無塵室材料</div><div class="cat-name">Cleanroom Materials<br>（ePTFE）</div><div class="cat-text">代理高性能 ePTFE 膨脹鐵氟龍材料，具備優異的過濾效能、氣密性與耐化性，廣泛應用於無塵室隔膜、管件密封及過濾系統，符合 ISO Class 1 至 8 規範。</div><div class="cat-tags"><span class="cat-tag">ePTFE 膜</span><span class="cat-tag">密封元件</span><span class="cat-tag">過濾模組</span></div><span class="cat-arrow">了解更多 →</span></div>
       </a>
       <a class="cat-card reveal reveal-delay-3" href="#">
-        <div class="cat-img"><div class="cat-img-inner"><div class="cat-img-icon"><svg width="20" height="20" fill="none" stroke="rgba(42,122,140,0.7)" stroke-width="1.2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="placeholder-label">加熱片材料圖片</span><span class="placeholder-size">建議 800×600 px</span></div></div>
+        <div class="cat-img"><img src="images/products/heating/product.svg" alt="加熱片相關材料"></div>
         <div class="cat-body"><div class="cat-num">03 / 加熱片相關材料</div><div class="cat-name">Heating Element<br>Materials</div><div class="cat-text">提供薄膜式加熱片、矽膠加熱器及配套控溫元件，溫度均勻性佳、升溫反應迅速，可依客戶製程需求客製化形狀與電阻值，適用於半導體設備、醫療器材及工業加熱應用。</div><div class="cat-tags"><span class="cat-tag">薄膜加熱片</span><span class="cat-tag">矽膠加熱器</span><span class="cat-tag">溫控元件</span></div><span class="cat-arrow">了解更多 →</span></div>
       </a>
       <a class="cat-card reveal reveal-delay-4" href="#">
-        <div class="cat-img"><div class="cat-img-inner"><div class="cat-img-icon"><svg width="20" height="20" fill="none" stroke="rgba(42,122,140,0.7)" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div><span class="placeholder-label">電子元件圖片</span><span class="placeholder-size">建議 800×600 px</span></div></div>
+        <div class="cat-img"><img src="images/products/components/product.svg" alt="電子元件"></div>
         <div class="cat-body"><div class="cat-num">04 / 電子元件</div><div class="cat-name">Electronic<br>Components</div><div class="cat-text">整合感測器、連接器、被動元件及特殊電子材料，自全球原廠直接授權代理，確保料號真實可溯、交期穩定，並提供技術應用諮詢服務協助客戶選型。</div><div class="cat-tags"><span class="cat-tag">感測器</span><span class="cat-tag">連接器</span><span class="cat-tag">被動元件</span></div><span class="cat-arrow">了解更多 →</span></div>
       </a>
     </div>
@@ -443,7 +445,7 @@
     <div class="strengths-inner">
       <div class="strengths-left reveal">
         <div class="strengths-visual">
-          <div class="strengths-img-ph"><span class="ph-label">關於我們形象圖</span><span class="ph-size">建議 640×800 px</span><span class="ph-size">images/hero/about.jpg</span></div>
+          <img src="images/hero/about.svg" alt="關於我們形象圖">
           <div class="strengths-badge"><div class="badge-num">10<sup style="font-size:16px">+</sup></div><div class="badge-label">深耕台灣工業材料代理</div></div>
         </div>
       </div>
@@ -470,9 +472,9 @@
       <div><p class="section-desc reveal">從半導體晶圓廠到醫療器材、從航太製造到精密機械，NC Design 代理的材料廣泛應用於高度要求潔淨度、穩定性與高效能的工業場景。</p></div>
     </div>
     <div class="app-grid">
-      <a class="app-card reveal reveal-delay-1" href="#"><div class="app-img"><span class="ph-label">半導體晶圓廠案例圖</span><span class="ph-size">建議 800×500 px</span></div><div class="app-info"><div class="app-cat">半導體製程</div><div class="app-title">晶圓研磨製程周邊材料整合供應</div><div class="app-text">協助 12 吋晶圓廠建立研磨製程耗材的穩定料源，提供一站式採購窗口，導入週期縮短約 30%。</div></div></a>
-      <a class="app-card reveal reveal-delay-2" href="#"><div class="app-img"><span class="ph-label">無塵室案例圖</span><span class="ph-size">建議 800×500 px</span></div><div class="app-info"><div class="app-cat">無塵室密封</div><div class="app-title">面板廠潔淨室 ePTFE 密封元件導入</div><div class="app-text">提供面板廠無塵室管道密封用 ePTFE 墊片，通過潔淨度驗證，維持 Class 10 環境下的氣密性要求。</div></div></a>
-      <a class="app-card reveal reveal-delay-3" href="#"><div class="app-img"><span class="ph-label">加熱設備案例圖</span><span class="ph-size">建議 800×500 px</span></div><div class="app-info"><div class="app-cat">加熱模組</div><div class="app-title">醫療器材加熱模組客製化開發</div><div class="app-text">依客戶規格客製化薄膜加熱片形狀與功率，配合醫療設備認證需求提供完整材料規格書。</div></div></a>
+      <a class="app-card reveal reveal-delay-1" href="#"><div class="app-img"><img src="images/products/semiconductor/case.svg" alt="半導體晶圓廠案例圖"></div><div class="app-info"><div class="app-cat">半導體製程</div><div class="app-title">晶圓研磨製程周邊材料整合供應</div><div class="app-text">協助 12 吋晶圓廠建立研磨製程耗材的穩定料源，提供一站式採購窗口，導入週期縮短約 30%。</div></div></a>
+      <a class="app-card reveal reveal-delay-2" href="#"><div class="app-img"><img src="images/products/cleanroom/case.svg" alt="無塵室案例圖"></div><div class="app-info"><div class="app-cat">無塵室密封</div><div class="app-title">面板廠潔淨室 ePTFE 密封元件導入</div><div class="app-text">提供面板廠無塵室管道密封用 ePTFE 墊片，通過潔淨度驗證，維持 Class 10 環境下的氣密性要求。</div></div></a>
+      <a class="app-card reveal reveal-delay-3" href="#"><div class="app-img"><img src="images/products/heating/case.svg" alt="加熱設備案例圖"></div><div class="app-info"><div class="app-cat">加熱模組</div><div class="app-title">醫療器材加熱模組客製化開發</div><div class="app-text">依客戶規格客製化薄膜加熱片形狀與功率，配合醫療設備認證需求提供完整材料規格書。</div></div></a>
     </div>
   </div>
 </section>
@@ -486,22 +488,22 @@
   </div>
   <div class="partners-track-wrap reveal">
     <div class="partners-track" id="partners-track">
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 A</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 B</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 C</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 D</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 E</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 F</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 G</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 H</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 A</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 B</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 C</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 D</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 E</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 F</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 G</span></div>
-      <div class="partner-logo"><div class="ph-box"></div><span class="ph-name">合作品牌 H</span></div>
+      <div class="partner-logo"><img src="images/partners/brand-a.svg" alt="合作品牌 A"></div>
+      <div class="partner-logo"><img src="images/partners/brand-b.svg" alt="合作品牌 B"></div>
+      <div class="partner-logo"><img src="images/partners/brand-c.svg" alt="合作品牌 C"></div>
+      <div class="partner-logo"><img src="images/partners/brand-d.svg" alt="合作品牌 D"></div>
+      <div class="partner-logo"><img src="images/partners/brand-e.svg" alt="合作品牌 E"></div>
+      <div class="partner-logo"><img src="images/partners/brand-f.svg" alt="合作品牌 F"></div>
+      <div class="partner-logo"><img src="images/partners/brand-g.svg" alt="合作品牌 G"></div>
+      <div class="partner-logo"><img src="images/partners/brand-h.svg" alt="合作品牌 H"></div>
+      <div class="partner-logo"><img src="images/partners/brand-a.svg" alt="合作品牌 A"></div>
+      <div class="partner-logo"><img src="images/partners/brand-b.svg" alt="合作品牌 B"></div>
+      <div class="partner-logo"><img src="images/partners/brand-c.svg" alt="合作品牌 C"></div>
+      <div class="partner-logo"><img src="images/partners/brand-d.svg" alt="合作品牌 D"></div>
+      <div class="partner-logo"><img src="images/partners/brand-e.svg" alt="合作品牌 E"></div>
+      <div class="partner-logo"><img src="images/partners/brand-f.svg" alt="合作品牌 F"></div>
+      <div class="partner-logo"><img src="images/partners/brand-g.svg" alt="合作品牌 G"></div>
+      <div class="partner-logo"><img src="images/partners/brand-h.svg" alt="合作品牌 H"></div>
     </div>
   </div>
 </section>
@@ -567,7 +569,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo-mark" style="margin-bottom:16px"><span>NC</span></div>
+        <div class="logo-mark" style="margin-bottom:16px"><img src="images/logo/icon.svg" alt="NC Design Logo"></div>
         <div class="brand-name">NC Design</div>
         <div class="brand-full">NC Design CO., LTD.　恩希設計有限公司</div>
         <div class="brand-desc">深耕台灣工業材料代理，以日本綜合商社精神整合半導體周邊材料、無塵室材料、加熱元件及電子零件，提供製造業一站式跨品類採購解決方案。</div>
