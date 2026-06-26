@@ -5,3 +5,9 @@
 
 # Thumbnails
 ._*
+
+# Office documents
+*.xlsx
+*.xls
+*.docx
+*.doc

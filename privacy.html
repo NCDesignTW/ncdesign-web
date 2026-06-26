@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>隱私權與 Cookie 政策 | NC Design CO., LTD.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink-deep:    #0c2c33;
+      --ink-navy:    #1c2636;
+      --ink-mid:     #243040;
+      --silver-light:#dae1e3;
+      --silver-mid:  #b8c2c6;
+      --silver-dark: #9fa5a6;
+      --silver-faint:#eef2f3;
+      --white:       #ffffff;
+      --accent-teal: #2a7a8c;
+      --accent-glow: rgba(42,122,140,0.18);
+
+      --nav-h: 72px;
+
+      --font-display: 'DM Sans', 'Noto Sans TC', sans-serif;
+      --font-body:    'Noto Sans TC', 'Inter', sans-serif;
+      --font-mono:    'Inter', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--ink-deep);
+      color: var(--silver-light);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--ink-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-teal); border-radius: 3px; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      padding: 0 48px;
+      background: linear-gradient(180deg, rgba(12,44,51,0.97) 0%, rgba(12,44,51,0.82) 100%);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(218,225,227,0.08);
+      transition: background .3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .logo-mark { width: 36px; height: 36px; border: 2px solid var(--accent-teal); border-radius: 6px; display: flex; align-items: center; justify-content: center; background: rgba(42,122,140,0.12); }
+    .logo-mark img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; display: block; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-text .name { font-size: 13px; font-weight: 600; color: var(--white); letter-spacing: .04em; }
+    .logo-text .sub  { font-size: 10px; color: var(--silver-dark); letter-spacing: .1em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 0; list-style: none; margin: 0 auto; }
+    .nav-links a { display: block; padding: 8px 20px; font-size: 13px; font-weight: 400; letter-spacing: .06em; color: var(--silver-mid); text-decoration: none; position: relative; transition: color .22s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 20px; right: 20px; height: 1px; background: var(--accent-teal); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { padding: 9px 22px; border: 1px solid var(--accent-teal); border-radius: 4px; font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--silver-light); text-decoration: none; transition: background .22s, color .22s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--accent-teal); color: var(--white); }
+    .nav-mobile-btn { display: none; background: none; border: none; cursor: pointer; padding: 11px; flex-direction: column; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; -webkit-tap-highlight-color: transparent; touch-action: manipulation; flex-shrink: 0; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: var(--silver-light); margin: 4px 0; border-radius: 2px; transition: transform .25s ease, opacity .2s ease; transform-origin: center; }
+    .nav-mobile-btn.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-mobile-btn.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-mobile-btn.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── Mobile menu ── */
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0; bottom: 0;
+      background: rgba(8,15,24,0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 98;
+      flex-direction: column;
+      padding: 32px 28px 48px;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity .28s ease, transform .28s ease;
+    }
+    .nav-mobile-menu.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-mobile-links { list-style: none; flex: 1; }
+    .nav-mobile-links li a {
+      display: block;
+      padding: 18px 0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: .01em;
+      color: var(--silver-mid);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(218,225,227,0.07);
+      transition: color .2s;
+    }
+    .nav-mobile-cta-btn {
+      display: block;
+      margin-top: 32px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--accent-teal), #1e5f6e);
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      color: var(--white);
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(42,122,140,0.3);
+    }
+
+    /* ── Language switch ── */
+    .lang-switch { display: flex; align-items: center; gap: 2px; margin-left: 12px; padding-left: 16px; border-left: 1px solid rgba(218,225,227,0.1); flex-shrink: 0; }
+    .lang-opt { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; color: var(--silver-dark); text-decoration: none; padding: 5px 8px; border-radius: 3px; transition: color .2s, background .2s; white-space: nowrap; }
+    .lang-opt.is-active { color: var(--accent-teal); background: rgba(42,122,140,0.1); }
+    .lang-opt:hover:not(.is-active) { color: var(--silver-light); }
+    .lang-sep { color: rgba(218,225,227,0.18); font-size: 9px; user-select: none; line-height: 1; }
+    .nav-mobile-lang { display: flex; align-items: center; gap: 0; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(218,225,227,0.07); }
+    .nav-mobile-lang-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--silver-dark); font-family: var(--font-mono); margin-right: 16px; flex-shrink: 0; }
+    .nav-mobile-lang .lang-opt { font-size: 14px; padding: 8px 12px; }
+
+    /* ── Page header ── */
+    .page-header {
+      padding-top: calc(var(--nav-h) + 72px);
+      padding-bottom: 64px;
+      background: linear-gradient(160deg, #0c2c33 0%, #1c2636 50%, #0c2c33 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(218,225,227,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(218,225,227,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.5) 80%, transparent 100%);
+    }
+    .page-header-orb {
+      position: absolute;
+      top: -60px; right: -80px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,122,140,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-header-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      font-size: 12px;
+      color: var(--silver-dark);
+      text-decoration: none;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .breadcrumb a:hover { color: var(--accent-teal); }
+    .breadcrumb-sep {
+      font-size: 12px;
+      color: var(--silver-dark);
+      opacity: .4;
+    }
+    .breadcrumb-current {
+      font-size: 12px;
+      color: var(--accent-teal);
+      letter-spacing: .04em;
+    }
+    .page-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .eyebrow-line { width: 32px; height: 1px; background: var(--accent-teal); }
+    .eyebrow-text { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-teal); font-family: var(--font-mono); }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .page-subtitle {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--silver-dark);
+      max-width: 560px;
+    }
+    .page-meta {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .page-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--silver-dark);
+      letter-spacing: .06em;
+    }
+    .page-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-teal); flex-shrink: 0; }
+
+    /* ── Content layout ── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+    .privacy-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 64px;
+      padding: 72px 0 96px;
+      align-items: start;
+    }
+
+    /* ── TOC sidebar ── */
+    .toc {
+      position: sticky;
+      top: calc(var(--nav-h) + 32px);
+    }
+    .toc-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--silver-mid);
+      font-family: var(--font-mono);
+      margin-bottom: 16px;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .toc-list a {
+      display: block;
+      padding: 7px 12px 7px 14px;
+      font-size: 12px;
+      color: var(--silver-dark);
+      text-decoration: none;
+      border-left: 1px solid rgba(218,225,227,0.1);
+      font-weight: 300;
+      letter-spacing: .02em;
+      line-height: 1.5;
+      transition: color .2s, border-color .2s;
+    }
+    .toc-list a:hover {
+      color: var(--silver-light);
+      border-color: var(--accent-teal);
+    }
+    .toc-list a.active {
+      color: var(--accent-teal);
+      border-color: var(--accent-teal);
+    }
+
+    /* ── Privacy content ── */
+    .privacy-content { min-width: 0; }
+    .privacy-intro {
+      font-size: 14px;
+      line-height: 2;
+      font-weight: 300;
+      color: var(--silver-mid);
+      padding: 24px 28px;
+      border: 1px solid rgba(42,122,140,0.2);
+      border-left: 3px solid var(--accent-teal);
+      background: rgba(42,122,140,0.05);
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 56px;
+    }
+
+    .privacy-section { margin-bottom: 56px; scroll-margin-top: calc(var(--nav-h) + 24px); }
+    .privacy-section:last-child { margin-bottom: 0; }
+
+    .section-num {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      font-family: var(--font-mono);
+      color: var(--accent-teal);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .privacy-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(218,225,227,0.08);
+    }
+    .privacy-section p {
+      font-size: 14px;
+      line-height: 2;
+      font-weight: 300;
+      color: var(--silver-mid);
+      margin-bottom: 16px;
+    }
+    .privacy-section p:last-child { margin-bottom: 0; }
+    .privacy-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .privacy-section ul li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.85;
+      font-weight: 300;
+      color: var(--silver-mid);
+    }
+    .privacy-section ul li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      flex-shrink: 0;
+      margin-top: 10px;
+    }
+
+    /* Cookie subsections */
+    .cookie-subsection { margin-top: 28px; }
+    .cookie-subsection h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--silver-light);
+      font-family: var(--font-mono);
+      margin-bottom: 16px;
+    }
+    .cookie-types { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+    .cookie-type-card {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0;
+      border: 1px solid rgba(218,225,227,0.07);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .cookie-type-label {
+      padding: 16px 18px;
+      background: rgba(42,122,140,0.07);
+      border-right: 1px solid rgba(218,225,227,0.07);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent-teal);
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+    }
+    .cookie-type-desc {
+      padding: 16px 20px;
+      font-size: 13px;
+      line-height: 1.8;
+      font-weight: 300;
+      color: var(--silver-mid);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Contact info */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(218,225,227,0.07);
+      border: 1px solid rgba(218,225,227,0.07);
+      margin-top: 24px;
+    }
+    .contact-cell {
+      background: rgba(28,38,54,0.8);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-cell-type {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      font-family: var(--font-mono);
+    }
+    .contact-cell-val {
+      font-size: 13px;
+      color: var(--silver-mid);
+      font-weight: 300;
+    }
+    .contact-cell-val a {
+      color: var(--silver-mid);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .contact-cell-val a:hover { color: var(--accent-teal); }
+
+    /* Update note */
+    .update-note {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(218,225,227,0.08);
+      font-size: 12px;
+      color: var(--silver-dark);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    footer { background: #080f18; padding: 64px 0 0; border-top: 1px solid rgba(218,225,227,0.06); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand .logo-mark { margin-bottom: 16px; }
+    .footer-brand .brand-name { font-family: var(--font-display); font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 4px; letter-spacing: .04em; }
+    .footer-brand .brand-full { font-size: 11px; color: var(--silver-dark); letter-spacing: .06em; margin-bottom: 16px; }
+    .footer-brand .brand-desc { font-size: 12px; line-height: 1.8; color: var(--silver-dark); font-weight: 300; }
+    .footer-col-title { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--silver-mid); margin-bottom: 18px; font-family: var(--font-mono); }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--silver-dark); text-decoration: none; font-weight: 300; letter-spacing: .02em; transition: color .2s; }
+    .footer-links a:hover { color: var(--silver-light); }
+    .footer-contact-item { display: flex; flex-direction: column; gap: 2px; margin-bottom: 14px; }
+    .contact-type { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-teal); font-family: var(--font-mono); }
+    .contact-val { font-size: 13px; color: var(--silver-mid); font-weight: 300; }
+    .footer-bar { border-top: 1px solid rgba(218,225,227,0.06); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bar p { font-size: 11px; color: var(--silver-dark); letter-spacing: .04em; }
+    .footer-bar--privacy { padding-bottom: 8px; border-bottom: none; }
+    .footer-privacy-note { font-size: 11px; color: var(--silver-dark); letter-spacing: .04em; }
+    .footer-bar-links { display: flex; gap: 20px; list-style: none; }
+    .footer-bar-links a { font-size: 11px; color: var(--silver-dark); text-decoration: none; transition: color .2s; }
+    .footer-bar-links a:hover { color: var(--silver-light); }
+    .footer-bar-links a[aria-current="page"] { color: var(--accent-teal); }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links, .nav-cta, .lang-switch { display: none; }
+      .nav-mobile-btn { display: flex; margin-left: auto; }
+      .nav-mobile-menu { display: flex; }
+      .page-header-inner { padding: 0 24px; }
+      .container { padding: 0 24px; }
+      .privacy-layout { grid-template-columns: 1fr; gap: 40px; }
+      .toc { position: static; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: 1 / -1; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .cookie-type-card { grid-template-columns: 1fr; }
+      .cookie-type-label { border-right: none; border-bottom: 1px solid rgba(218,225,227,0.07); }
+    }
+    @media (max-width: 480px) {
+      .page-header-inner { padding: 0 20px; }
+      .container { padding: 0 20px; }
+      .privacy-layout { padding: 48px 0 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="index.html">
+    <div class="logo-mark"><img src="images/logo/icon.svg" alt="NC Design Logo"></div>
+    <div class="logo-text">
+      <span class="name">NC Design</span>
+      <span class="sub">Industrial Materials</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="index.html#strengths">關於我們</a></li>
+    <li><a href="index.html#categories">代理品類</a></li>
+    <li><a href="index.html#applications">應用案例</a></li>
+    <li><a href="index.html#partners">合作品牌</a></li>
+  </ul>
+  <div class="lang-switch">
+    <a href="privacy.html" class="lang-opt is-active">繁中</a>
+    <span class="lang-sep">|</span>
+    <a href="privacy-en.html" class="lang-opt">EN</a>
+  </div>
+  <a class="nav-cta" href="index.html#cta-band">聯絡詢價</a>
+  <button class="nav-mobile-btn" aria-label="開啟選單" id="mobileBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="nav-mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul class="nav-mobile-links">
+    <li><a href="index.html" data-close-menu>首頁</a></li>
+    <li><a href="index.html#strengths" data-close-menu>關於我們</a></li>
+    <li><a href="index.html#categories" data-close-menu>代理品類</a></li>
+    <li><a href="index.html#applications" data-close-menu>應用案例</a></li>
+    <li><a href="index.html#partners" data-close-menu>合作品牌</a></li>
+  </ul>
+  <a class="nav-mobile-cta-btn" href="index.html#cta-band" data-close-menu>聯絡詢價</a>
+  <div class="nav-mobile-lang">
+    <span class="nav-mobile-lang-label">語言</span>
+    <a href="privacy.html" class="lang-opt is-active">繁體中文</a>
+    <span class="lang-sep">|</span>
+    <a href="privacy-en.html" class="lang-opt">English</a>
+  </div>
+</div>
+
+<!-- Page Header -->
+<header class="page-header">
+  <div class="page-header-orb"></div>
+  <div class="page-header-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">首頁</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">隱私權政策</span>
+    </nav>
+    <div class="page-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Privacy &amp; Cookie Policy</span>
+    </div>
+    <h1 class="page-title">隱私權與<br>Cookie 使用政策</h1>
+    <p class="page-subtitle">NC Design CO., LTD. 重視每位訪客與客戶的個人隱私，依循中華民國《個人資料保護法》及相關法令規定辦理。</p>
+    <div class="page-meta">
+      <div class="page-meta-item"><span class="page-meta-dot"></span>最後更新：2025 年</div>
+      <div class="page-meta-item"><span class="page-meta-dot"></span>適用網站：ncdesign.com.tw</div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main>
+  <div class="container">
+    <div class="privacy-layout">
+
+      <!-- TOC Sidebar -->
+      <aside class="toc" aria-label="目錄">
+        <div class="toc-title">本頁目錄</div>
+        <ul class="toc-list">
+          <li><a href="#scope">一、適用範圍</a></li>
+          <li><a href="#collection">二、資料蒐集與使用</a></li>
+          <li><a href="#security">三、安全保護措施</a></li>
+          <li><a href="#external">四、外部連結說明</a></li>
+          <li><a href="#third-party">五、第三方共用原則</a></li>
+          <li><a href="#cookie">六、Cookie 說明與運用</a></li>
+          <li><a href="#update">七、政策更新與修訂</a></li>
+          <li><a href="#rights">八、個人資料權利</a></li>
+        </ul>
+      </aside>
+
+      <!-- Privacy Sections -->
+      <div class="privacy-content">
+
+        <p class="privacy-intro reveal">
+          NC Design CO., LTD.（以下簡稱「本公司」）重視每位訪客與客戶的個人隱私。本政策旨在說明本公司網站（ncdesign.com.tw）於您使用各項服務過程中，針對個人資料之蒐集、處理與運用方式，均依循中華民國《個人資料保護法》及相關法令規定辦理。請您在使用本網站前詳細閱讀以下內容，以確保您充分了解並同意本政策之各項條款。
+        </p>
+
+        <!-- 一 -->
+        <section class="privacy-section reveal" id="scope">
+          <span class="section-num">Section 01</span>
+          <h2>本政策之適用範圍</h2>
+          <p>本隱私權政策適用於您在瀏覽及使用本公司網站服務期間所產生之個人資料處理事宜。請注意，本政策僅適用於本網站之範疇，若您透過本網站連結至其他外部網站，該等網站之隱私權保護事宜，概依各該網站之規範為準，與本公司無涉。</p>
+        </section>
+
+        <!-- 二 -->
+        <section class="privacy-section reveal" id="collection">
+          <span class="section-num">Section 02</span>
+          <h2>個人資料的蒐集目的與使用方式</h2>
+          <p>為使您能夠充分享有本網站所提供之互動服務，本公司可能於特定情形下請您提供相關個人資訊，說明如下：</p>
+          <p>當您使用本網站提供之「詢價表單」、「聯絡我們」或其他互動功能時，本公司將依服務性質請您填寫必要欄位，包含但不限於：公司名稱、聯絡人姓名、職稱、電話號碼及電子郵件地址等。上述資料僅供本公司業務團隊於特定目的範圍內進行處理與使用，未經您明確書面授權，絕不移作其他用途。</p>
+          <p>於您一般瀏覽本網站期間，伺服器將自動記錄相關技術資訊，包括連線裝置之 IP 位址、瀏覽時間、所使用之瀏覽器類型及頁面瀏覽紀錄等，此類資訊僅作為本公司改善網站品質之內部參考，不會對外揭露或提供予任何第三方。</p>
+          <p>除非法令另有規定、取得您的明確同意，或基於回應您詢問之必要，本公司不會將您的個人資料以任何形式轉交予第三方。若有必要委由合作夥伴或服務廠商代為聯繫，本公司將嚴格限制其使用範圍，僅限於提供服務之必要目的。</p>
+        </section>
+
+        <!-- 三 -->
+        <section class="privacy-section reveal" id="security">
+          <span class="section-num">Section 03</span>
+          <h2>個人資料之安全保護措施</h2>
+          <p>本公司網站伺服器均配備防火牆、惡意程式防護等資訊安全設備，並採取多重防護機制以確保系統及個人資料之安全。</p>
+          <p>接觸您個人資料之相關人員，均須具備合法授權資格，且均已簽署保密協議，如有違反相關規定者，將依法追究其法律責任。</p>
+          <p>如因業務需要委託第三方協助處理個人資料，本公司亦會確實要求相關廠商遵守保密義務，並進行必要之稽核與監督。</p>
+        </section>
+
+        <!-- 四 -->
+        <section class="privacy-section reveal" id="external">
+          <span class="section-num">Section 04</span>
+          <h2>外部連結之說明</h2>
+          <p>本網站部分頁面可能含有連結至外部網站之超連結，以提供您參考資訊。惟該等外部網站之內容及個人資料保護方式，均由各該網站自行負責，本公司無從管轄，建議您在瀏覽前詳閱各該網站之隱私權聲明。</p>
+        </section>
+
+        <!-- 五 -->
+        <section class="privacy-section reveal" id="third-party">
+          <span class="section-num">Section 05</span>
+          <h2>個人資料之第三方共用原則</h2>
+          <p>本公司承諾不會將您的個人資料出售、出租、交換或以任何形式提供予未經授權之個人或組織，但下列情形除外：</p>
+          <ul>
+            <li>經您明確書面同意授權者</li>
+            <li>依法令規定有揭露義務者</li>
+            <li>為保護您或他人之生命、身體、自由或財產安全之緊急情形</li>
+            <li>依法與政府機關或學術研究機構合作，且資料已去識別化處理，無從辨識特定個人者</li>
+            <li>當您的行為違反本網站服務條款，或對本公司、其他使用者造成損害，必須透過個資辨識以採取法律行動者</li>
+            <li>基於保護您本身合法權益之必要者</li>
+          </ul>
+          <p>本公司委託第三方廠商協助執行相關業務時，亦將善盡監督義務，確保個人資料之妥善處理。</p>
+        </section>
+
+        <!-- 六 -->
+        <section class="privacy-section reveal" id="cookie">
+          <span class="section-num">Section 06</span>
+          <h2>Cookie 技術之說明與運用</h2>
+
+          <div class="cookie-subsection">
+            <h3>什麼是 Cookie？</h3>
+            <p>Cookie 是網站在您瀏覽時，儲存於您裝置上的小型文字記錄檔。Cookie 能協助網站記憶您的偏好設定與操作行為，使您每次造訪時能獲得更流暢、個人化的使用體驗。</p>
+          </div>
+
+          <div class="cookie-subsection">
+            <h3>本網站如何使用 Cookie？</h3>
+            <p>本網站使用的 Cookie 可分為以下四種類型：</p>
+            <div class="cookie-types">
+              <div class="cookie-type-card">
+                <div class="cookie-type-label">基礎功能型</div>
+                <div class="cookie-type-desc">此類 Cookie 為網站正常運作之必要條件，若停用將導致部分核心功能無法使用，無法透過設定加以關閉。</div>
+              </div>
+              <div class="cookie-type-card">
+                <div class="cookie-type-label">效能分析型</div>
+                <div class="cookie-type-desc">蒐集訪客瀏覽行為之彙整統計資訊，例如常造訪頁面、停留時間等，所有資料均為匿名處理，用於持續優化網站使用體驗。</div>
+              </div>
+              <div class="cookie-type-card">
+                <div class="cookie-type-label">個人化功能型</div>
+                <div class="cookie-type-desc">記憶您曾輸入的偏好資訊（如語言選擇），使網站能提供更符合您需求的個人化服務，此類 Cookie 不追蹤您在其他網站的活動。</div>
+              </div>
+              <div class="cookie-type-card">
+                <div class="cookie-type-label">行銷推廣型</div>
+                <div class="cookie-type-desc">用於紀錄您的造訪記錄，以提供與您興趣相關的內容或服務資訊。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cookie-subsection">
+            <h3>如何管理 Cookie 設定？</h3>
+            <p>您可隨時透過瀏覽器設定，選擇限制或拒絕 Cookie 的寫入。惟請注意，停用部分 Cookie 可能導致本網站之某些功能受到限制或無法正常運作。</p>
+          </div>
+        </section>
+
+        <!-- 七 -->
+        <section class="privacy-section reveal" id="update">
+          <span class="section-num">Section 07</span>
+          <h2>本政策之更新與修訂</h2>
+          <p>本公司保留隨時修訂本隱私權政策之權利，以因應法令變動或業務調整之需求。政策修訂後將於本網站公告，並以網站上刊載之最新版本為準，建議您定期瀏覽以掌握最新內容。</p>
+        </section>
+
+        <!-- 八 -->
+        <section class="privacy-section reveal" id="rights">
+          <span class="section-num">Section 08</span>
+          <h2>個人資料查閱、更正與刪除</h2>
+          <p>您對於本公司保有之個人資料，享有查閱、補充、更正及請求刪除之權利。如欲行使上述權利，或對本政策有任何疑問，歡迎透過以下方式與本公司聯繫：</p>
+          <div class="contact-grid">
+            <div class="contact-cell">
+              <span class="contact-cell-type">聯絡信箱</span>
+              <span class="contact-cell-val"><a href="mailto:info@ncdesign.com.tw">info@ncdesign.com.tw</a></span>
+            </div>
+            <div class="contact-cell">
+              <span class="contact-cell-type">聯絡電話</span>
+              <span class="contact-cell-val">+886-3-000-0000</span>
+            </div>
+            <div class="contact-cell">
+              <span class="contact-cell-type">營業時間</span>
+              <span class="contact-cell-val">週一至週五　08:30 – 17:30</span>
+            </div>
+          </div>
+          <p style="margin-top:20px">本公司將於收到您的請求後，於合理期限內妥善回覆並處理。</p>
+        </section>
+
+        <div class="update-note reveal">
+          最後更新日期：2025 年 ／ NC Design CO., LTD. 保留解釋及修訂本政策之最終權利。
+        </div>
+
+      </div><!-- /privacy-content -->
+    </div><!-- /privacy-layout -->
+  </div><!-- /container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-mark" style="margin-bottom:16px"><img src="images/logo/icon.svg" alt="NC Design Logo"></div>
+        <div class="brand-name">NC Design</div>
+        <div class="brand-full">NC Design CO., LTD.　恩希設計有限公司</div>
+        <div class="brand-desc">深耕台灣工業材料代理，以日本綜合商社精神整合半導體周邊材料、無塵室材料、加熱元件及電子零件，提供製造業一站式跨品類採購解決方案。</div>
+      </div>
+      <div>
+        <div class="footer-col-title">主選單</div>
+        <ul class="footer-links">
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="index.html#strengths">關於我們</a></li>
+          <li><a href="index.html#categories">代理品類</a></li>
+          <li><a href="index.html#applications">應用案例</a></li>
+          <li><a href="index.html#partners">合作品牌</a></li>
+          <li><a href="index.html#cta-band">聯絡詢價</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">代理品類</div>
+        <ul class="footer-links">
+          <li><a href="#">半導體周邊材料</a></li>
+          <li><a href="#">無塵室材料（ePTFE）</a></li>
+          <li><a href="#">加熱片相關材料</a></li>
+          <li><a href="#">電子元件</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">聯絡資訊</div>
+        <div class="footer-contact-item"><span class="contact-type">地址</span><span class="contact-val">〔公司地址〕</span></div>
+        <div class="footer-contact-item"><span class="contact-type">電話</span><span class="contact-val">+886-3-000-0000</span></div>
+        <div class="footer-contact-item"><span class="contact-type">Email</span><span class="contact-val">info@ncdesign.com.tw</span></div>
+        <div class="footer-contact-item"><span class="contact-type">營業時間</span><span class="contact-val">週一至週五　08:30 – 17:30</span></div>
+      </div>
+    </div>
+    <div class="footer-bar footer-bar--privacy">
+      <p class="footer-privacy-note">本網站蒐集之個人資料僅用於詢價回覆，不會提供予第三方。</p>
+    </div>
+    <div class="footer-bar">
+      <p>© 2025 NC Design CO., LTD. All rights reserved.</p>
+      <ul class="footer-bar-links">
+        <li><a href="privacy.html" aria-current="page">隱私權政策</a></li>
+        <li><a href="#">網站地圖</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Mobile menu ── */
+  const mobileBtn  = document.getElementById('mobileBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let _menuScrollY = 0;
+  function openMenu() {
+    _menuScrollY = window.scrollY;
+    mobileBtn.classList.add('is-open');
+    mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.cssText = 'overflow:hidden;position:fixed;top:-' + _menuScrollY + 'px;width:100%;';
+  }
+  function closeMenu() {
+    mobileBtn.classList.remove('is-open');
+    mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.cssText = '';
+    window.scrollTo(0, _menuScrollY);
+  }
+  mobileBtn.addEventListener('click', function() {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  document.querySelectorAll('[data-close-menu]').forEach(el => el.addEventListener('click', closeMenu));
+
+  /* ── Nav scroll ── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 40
+      ? 'linear-gradient(180deg, rgba(8,15,24,0.98) 0%, rgba(8,15,24,0.96) 100%)'
+      : 'linear-gradient(180deg, rgba(12,44,51,0.97) 0%, rgba(12,44,51,0.82) 100%)';
+  });
+
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  /* ── TOC active state ── */
+  const sections = document.querySelectorAll('.privacy-section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector('.toc-list a[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+  sections.forEach(s => tocObserver.observe(s));
+</script>
+
+</body>
+</html>
