@@ -110,7 +110,7 @@
     .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
     .section-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
     .section-label .line { width: 24px; height: 1px; background: var(--accent-teal); }
-    .section-label .text { font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--accent-teal); font-family: var(--font-mono); }
+    .section-label .text { font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--accent-teal); font-family: var(--font-mono); }
     .section-title { font-family: var(--font-display); font-size: clamp(26px, 3vw, 40px); font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 16px; }
     .section-desc { font-size: 14px; line-height: 1.9; font-weight: 300; color: var(--silver-dark); max-width: 540px; }
 
@@ -272,7 +272,7 @@
     .nav-mobile-lang .lang-opt { font-size: 14px; padding: 8px 12px; }
 
     @media (max-width: 900px) { nav { padding: 0 24px; } .nav-links, .nav-cta, .lang-switch { display: none; } .nav-mobile-btn { display: flex; margin-left: auto; } .hero-img-wrap { display: none; } .hero-inner { padding: 0 24px; } .hero-stats { flex-wrap: wrap; gap: 20px; } .stat-item { flex: 0 0 calc(50% - 10px); border-right: none; padding-right: 0; } .container { padding: 0 24px; } .strengths-inner { grid-template-columns: 1fr; } .strengths-left { display: none; } .app-header { grid-template-columns: 1fr; gap: 24px; } .app-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-brand { grid-column: 1 / -1; } .cta-inner { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { :root { --section-pad: 64px 0; } .cat-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .hero-stats .stat-item { flex: 0 0 100%; } }
+    @media (max-width: 600px) { :root { --section-pad: 64px 0; } .cat-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .hero-stats .stat-item { flex: 0 0 100%; } .section-label .text { font-size: 12px; } }
 
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
